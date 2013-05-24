@@ -9,13 +9,13 @@ public interface BoardService {
 
 	public void create(BoardVO board) throws Exception;
 	
-	public BoardVO read(String key) throws Exception;
+	public BoardVO read(Integer key) throws Exception;
 	
 	public BoardVO read(Condition condition) throws Exception;
 	
 	public void update(BoardVO board) throws Exception;
 	
-	public void delete(String key) throws Exception;
+	public void delete(Integer key) throws Exception;
 	
 	public void delete(Condition condition) throws Exception;
 	

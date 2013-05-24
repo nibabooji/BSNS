@@ -6,7 +6,7 @@ public class BoardVO {
 
 	private Integer number;
 	
-	private String type;
+	private Integer type;
 	
 	private String email;
 	
@@ -22,11 +22,11 @@ public class BoardVO {
 		this.number = number;
 	}
 
-	public String getType() {
+	public Integer getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(Integer type) {
 		this.type = type;
 	}
 
