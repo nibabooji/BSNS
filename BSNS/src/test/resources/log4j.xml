@@ -13,7 +13,7 @@
 			<param name="StringToMatch" value="Result" />
 			<param name="AcceptOnMatch" value="false" />
 		</filter>
-
+ 
 	</appender>
 	
 	<!-- Application Loggers -->
