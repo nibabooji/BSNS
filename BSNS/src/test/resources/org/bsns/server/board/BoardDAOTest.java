@@ -59,4 +59,16 @@ extends JunitSettting
 		
 		boardDao.delete(condition);
 	}
+	
+	@Test
+	public void list() throws SQLException{
+		Condition<String, Object> condition = new Condition<String, Object>();
+		
+		condition.put("page", 1);
+//		condition.put("type", 2);
+		
+		//boardDao.list(condition);
+		System.out.println(boardDao.list(condition));
+		//log.debug("BoardDAO list Test result : " + boardDao.list(condition));
+	}
 }

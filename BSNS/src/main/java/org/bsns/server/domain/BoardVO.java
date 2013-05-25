@@ -14,6 +14,14 @@ public class BoardVO {
 	
 	private Date date;
 
+	private JobTimeVO jobTime;
+	
+	private BoardFileVO boardFile;
+	
+	private ScheduleVO schedule;
+	
+	private ApprovalVO approval;
+
 	public Integer getNumber() {
 		return number;
 	}
@@ -54,11 +62,47 @@ public class BoardVO {
 		this.date = date;
 	}
 
+	public JobTimeVO getJobTime() {
+		return jobTime;
+	}
+
+	public void setJobTime(JobTimeVO jobTime) {
+		this.jobTime = jobTime;
+	}
+
+	public BoardFileVO getBoardFile() {
+		return boardFile;
+	}
+
+	public void setBoardFile(BoardFileVO boardFile) {
+		this.boardFile = boardFile;
+	}
+
+	public ScheduleVO getSchedule() {
+		return schedule;
+	}
+
+	public void setSchedule(ScheduleVO schedule) {
+		this.schedule = schedule;
+	}
+
+	public ApprovalVO getApproval() {
+		return approval;
+	}
+
+	public void setApproval(ApprovalVO approval) {
+		this.approval = approval;
+	}
+
 	@Override
 	public String toString() {
 		return "BoardVO [number=" + number + ", type=" + type + ", email="
-				+ email + ", content=" + content + ", date=" + date + "]";
+				+ email + ", content=" + content + ", date=" + date
+				+ ", jobTime=" + jobTime + ", boardFile=" + boardFile
+				+ ", schedule=" + schedule + ", approval=" + approval + "]";
 	}
+	
+	
 	
 	
 	
