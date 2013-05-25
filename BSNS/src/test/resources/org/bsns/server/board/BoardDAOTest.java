@@ -68,7 +68,7 @@ extends JunitSettting
 //		condition.put("type", 2);
 		
 		//boardDao.list(condition);
-		System.out.println(boardDao.list(condition));
-		//log.debug("BoardDAO list Test result : " + boardDao.list(condition));
+		//System.out.println(boardDao.list(condition));
+		log.debug("BoardDAO list Test result : " + boardDao.list(condition));
 	}
 }
