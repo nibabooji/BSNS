@@ -8,11 +8,11 @@ import org.bsns.server.domain.BoardFileVO;
 
 public interface BoardFileDAO {
 
-	public void create(BoardFileVO board) throws SQLException;
+	public void create(BoardFileVO file) throws SQLException;
 	
 	public BoardFileVO read(Condition condition) throws SQLException;
 	
-	public void update(BoardFileVO board) throws SQLException;
+	public void update(BoardFileVO file) throws SQLException;
 	
 	public void delete(Condition condition) throws SQLException;
 	

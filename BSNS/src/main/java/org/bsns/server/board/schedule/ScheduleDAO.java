@@ -8,11 +8,11 @@ import org.bsns.server.domain.ScheduleVO;
 
 public interface ScheduleDAO {
 
-	public void create(ScheduleVO board) throws SQLException;
+	public void create(ScheduleVO schedule) throws SQLException;
 	
 	public ScheduleVO read(Condition condition) throws SQLException;
 	
-	public void update(ScheduleVO board) throws SQLException;
+	public void update(ScheduleVO schedule) throws SQLException;
 	
 	public void delete(Condition condition) throws SQLException;
 	

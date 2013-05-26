@@ -8,11 +8,11 @@ import org.bsns.server.domain.ApprovalVO;
 
 public interface ApprovalDAO {
 
-	public void create(ApprovalVO board) throws SQLException;
+	public void create(ApprovalVO approval) throws SQLException;
 	
 	public ApprovalVO read(Condition condition) throws SQLException;
 	
-	public void update(ApprovalVO board) throws SQLException;
+	public void update(ApprovalVO approval) throws SQLException;
 	
 	public void delete(Condition condition) throws SQLException;
 	
