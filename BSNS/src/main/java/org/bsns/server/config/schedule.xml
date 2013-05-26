@@ -10,7 +10,7 @@
     	<result property="scheduleKey" column="SCHEDULE_KEY"/>
     	<result property="boardNum" column="BOARD_NO"/>
     	<result property="scheduleDate" column="SCHEDULE_DATE"/>
-    </resultMap>
+    </resultMap> 
 
 	<insert id="create" parameterClass="schedule">
 		<selectKey keyProperty="scheduleKey" resultClass="Integer">

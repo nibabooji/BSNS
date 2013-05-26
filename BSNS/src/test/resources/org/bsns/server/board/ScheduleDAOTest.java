@@ -54,7 +54,7 @@ extends JunitSettting
 		
 		scheduleDAO.delete(condition);
 	}
-	
+	 
 	@Test
 	public void list() throws SQLException{
 		Condition<String, Object> condition = new Condition<String, Object>();

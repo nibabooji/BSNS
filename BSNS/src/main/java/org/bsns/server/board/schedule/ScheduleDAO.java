@@ -18,3 +18,4 @@ public interface ScheduleDAO {
 	
 	public List<ScheduleVO> list(Condition condition) throws SQLException;
 }
+ 

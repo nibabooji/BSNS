@@ -21,7 +21,7 @@ implements ScheduleDAO
 	@Override
 	public void create(ScheduleVO schedule) throws SQLException {
 		log.debug("===== ScheduleDAOImpl Class Create start =====");
-		getSqlMapClient().insert(NAMESPACE + "create", schedule);
+		getSqlMapClient().insert(NAMESPACE + "create", schedule); 
 		log.debug("===== ScheduleDAOImpl Class Create end =====");
 	}
 

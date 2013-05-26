@@ -18,3 +18,4 @@ public interface BoardFileDAO {
 	
 	public List<BoardFileVO> list(Condition condition) throws SQLException;
 }
+ 
