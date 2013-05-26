@@ -11,29 +11,29 @@
     <typeAlias alias="approval" type="org.bsns.server.domain.ApprovalVO"/>
     <typeAlias alias="condition" type="org.bsns.server.common.Condition"/>
     
-    <resultMap class="board" id="boardResult">
+    <resultMap class="board" id="boardResult" groupBy="number">
     	<result property="number" 	column="BOARD_NO"/>
     	<result property="type"		column="BOARD_TYPE_NO"/>
     	<result property="email"	column="EMAIL"/>
     	<result property="content"	column="CONTENT"/>
     	<result property="date"		column="WRITE_DATE"/>
-    	<result property="jobTime"  column="BOARD_NO" select="Board.jobTimeList"/>
+    	<result property="jobTime"  column="BOARD_NO" select="boardJobTimeList"/>
     	<result property="boardFile"  column="BOARD_NO" select="Board.boardFileList"/>
     	<result property="schedule"  column="BOARD_NO" select="Board.scheduleList"/>
     	<result property="approval"  column="BOARD_NO" select="Board.approvalList"/>
     </resultMap>
     
+    <resultMap class="jobTime" id="jobTimeResult">
+		<result property="jobTimeKey" column="JOBTIME_KEY" />
+		<result property="boardNum" column="BOARD_NO" />
+		<result property="jobTimeType" column="JOBTIME_TYPE" />
+		<result property="jobTimeDate" column="JOBTIME_DATE" />
+	</resultMap>
+    
     <resultMap class="boardFile" id="boardFileResult">
     	<result property="boardFileNo" column="BOARD_FILE_NO"/>
     	<result property="fileNo" column="FILE_NO"/>
     	<result property="boardNum" column="BOARD_NO"/>
-    </resultMap>
-    
-    <resultMap class="jobTime" id="jobTimeResult">
-    	<result property="jobTimeKey" column="JOBTIME_KEY"/>
-    	<result property="boardNum" column="BOARD_NO"/>
-    	<result property="jobtimeType" column="JOBTIME_TYPE"/>
-    	<result property="jobtimeDate" column="JOBTIME_DATE"/>
     </resultMap>
     
     <resultMap class="schedule" id="scheduleResult">
@@ -47,20 +47,16 @@
     	<result property="boardNum" column="BOARD_NO"/>
     </resultMap>
     
-    
-    
-    
-    
     <statement id="boardFileList" resultMap="boardFileResult">
     	SELECT * 
     	FROM TB_BOARD_FILE
     	WHERE BOARD_NO = #boardNum# 
     </statement>
     
-    <statement id="jobTimeList" resultMap="jobTimeResult">
-    	SELECT * 
-    	FROM TB_JOBTIME
-    	WHERE BOARD_NO = #boardNum# 
+    <statement id="boardJobTimeList" resultMap="jobTimeResult">
+    	SELECT JOBTIME_KEY, BOARD_NO, JOBTIME_TYPE, JOBTIME_DATE
+		FROM TB_JOBTIME
+		WHERE BOARD_NO = #boardNum#
     </statement>
     
     <statement id="scheduleList" resultMap="scheduleResult">
@@ -79,8 +75,8 @@
     
     <insert id="create" parameterClass="board">
     	<selectKey keyProperty="number" resultClass="Integer">
-                SELECT SEQ_BOARD.NEXTVAL BOARD_NO FROM DUAL
-            </selectKey>
+        	SELECT SEQ_BOARD.NEXTVAL BOARD_NO FROM DUAL
+        </selectKey>
             INSERT INTO TB_BOARD(BOARD_NO, BOARD_TYPE_NO, EMAIL, CONTENT, WRITE_DATE)
             VALUES (#number#, #type#, #email#, #content#, SYSDATE)
     </insert>
@@ -93,16 +89,16 @@
     
     <select id="list" parameterClass="condition" resultMap="boardResult">
 		SELECT * FROM (
-			  SELECT ROWNUM rn, A.* FROM (
-			      SELECT board.BOARD_NO,board.BOARD_TYPE_NO, board.CONTENT, board.EMAIL, board.WRITE_DATE
-			        FROM TB_BOARD board 
-			        <dynamic>
-			        	<isNotNull property="type">
-			        		WHERE board.BOARD_TYPE_NO = #type#
-			        	</isNotNull>
-			        </dynamic>
-			        ORDER BY board.WRITE_DATE DESC
-		      )A
+			SELECT ROWNUM rn, A.* FROM (
+				SELECT board.BOARD_NO,board.BOARD_TYPE_NO, board.CONTENT, board.EMAIL, board.WRITE_DATE
+				FROM TB_BOARD board 
+				<dynamic>
+					<isNotNull property="type">
+						WHERE board.BOARD_TYPE_NO = #type#
+					</isNotNull>
+				</dynamic>
+				ORDER BY board.WRITE_DATE DESC
+			)A
 		)WHERE <![CDATA[ rn >= ((#page#-1)*10)+1 AND rn <= #page#*10 ]]>
 		ORDER BY rn
     </select>

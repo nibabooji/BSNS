@@ -1,0 +1,57 @@
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="JobTime">
+	<typeAlias alias="jobTime" type="org.bsns.server.domain.JobTimeVO" />
+    <typeAlias alias="condition" type="org.bsns.server.common.Condition"/>
+    
+	<resultMap class="jobTime" id="jobTimeResult">
+		<result property="jobTimeKey" column="JOBTIME_KEY" />
+		<result property="boardNum" column="BOARD_NO" />
+		<result property="jobTimeType" column="JOBTIME_TYPE" />
+		<result property="jobTimeDate" column="JOBTIME_DATE" />
+	</resultMap>
+
+	<insert id="create" parameterClass="jobTime">
+		<selectKey keyProperty="jobTimeKey" resultClass="Integer">
+			SELECT SEQ_JOBTIME.NEXTVAL JOBTIME_KEY FROM DUAL
+		</selectKey>
+		INSERT INTO TB_JOBTIME(JOBTIME_KEY, BOARD_NO, JOBTIME_TYPE, JOBTIME_DATE)
+		VALUES (#jobTimeKey#, #boardNum#, #jobTimeType#, SYSDATE)
+	</insert>
+	<select id="read" parameterClass="condition" resultMap="jobTimeResult">
+		SELECT JOBTIME_KEY, BOARD_NO, JOBTIME_TYPE, JOBTIME_DATE
+		FROM TB_JOBTIME
+		WHERE JOBTIME_KEY = #jobTimeKey#
+	</select>
+
+	<select id="list" parameterClass="condition" resultMap="jobTimeResult">
+		SELECT *
+		FROM(
+			SELECT ROWNUM rn, A.* 
+			FROM (
+				SELECT jobtime.JOBTIME_KEY, jobtime.BOARD_NO, jobtime.JOBTIME_TYPE, jobtime.JOBTIME_DATE
+				FROM TB_JOBTIME jobtime 
+		        <dynamic>
+		      		<isNotNull property="jobTimeType">
+			        	WHERE jobtime.JOBTIME_TYPE = #jobTimeType#
+			        </isNotNull>
+			 	</dynamic>
+				ORDER BY jobtime.JOBTIME_DATE DESC
+			)A
+		)WHERE <![CDATA[ rn >= ((#page#-1)*10)+1 AND rn <= #page#*10 ]]>
+		ORDER BY rn
+	</select>
+
+	<update id="update" parameterClass="jobTime">
+		UPDATE TB_JOBTIME
+		SET JOBTIME_TYPE = #jobTimeType#,
+			JOBTIME_DATE = SYSDATE
+		WHERE JOBTIME_KEY = #jobTimeKey#
+	</update>
+
+	<delete id="delete" parameterClass="condition">
+		DELETE FROM TB_JOBTIME
+		WHERE JOBTIME_KEY = #jobTimeKey#
+	</delete>
+</sqlMap>

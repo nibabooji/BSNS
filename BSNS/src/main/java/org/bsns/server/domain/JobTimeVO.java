@@ -3,8 +3,8 @@ package org.bsns.server.domain;
 public class JobTimeVO {
 	private Integer jobTimeKey;
 	private Integer boardNum;
-	private Integer jobtimeType;
-	private String jobtimeDate;
+	private Integer jobTimeType;
+	private String jobTimeDate;
 	
 	public Integer getJobTimeKey() {
 		return jobTimeKey;
@@ -18,23 +18,23 @@ public class JobTimeVO {
 	public void setBoardNum(Integer boardNum) {
 		this.boardNum = boardNum;
 	}
-	public Integer getJobtimeType() {
-		return jobtimeType;
+	public Integer getJobTimeType() {
+		return jobTimeType;
 	}
-	public void setJobtimeType(Integer jobtimeType) {
-		this.jobtimeType = jobtimeType;
+	public void setJobTimeType(Integer jobTimeType) {
+		this.jobTimeType = jobTimeType;
 	}
-	public String getJobtimeDate() {
-		return jobtimeDate;
+	public String getJobTimeDate() {
+		return jobTimeDate;
 	}
-	public void setJobtimeDate(String jobtimeDate) {
-		this.jobtimeDate = jobtimeDate;
+	public void setJobTimeDate(String jobTimeDate) {
+		this.jobTimeDate = jobTimeDate;
 	}
 	@Override
 	public String toString() {
 		return "JobTimeVO [jobTimeKey=" + jobTimeKey + ", boardNum=" + boardNum
-				+ ", jobtimeType=" + jobtimeType + ", jobtimeDate="
-				+ jobtimeDate + "]";
+				+ ", jobTimeType=" + jobTimeType + ", jobTimeDate="
+				+ jobTimeDate + "]";
 	}
 	
 	

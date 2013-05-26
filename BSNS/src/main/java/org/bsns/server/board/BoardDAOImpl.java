@@ -28,6 +28,7 @@ implements BoardDAO
 	public BoardVO read(Condition condition) throws SQLException {
 		log.debug("===== BoardDAOImpl Class Read start =====");
 		BoardVO board = (BoardVO)getSqlMapClient().queryForObject(NAMESPACE + "read", condition);
+		log.debug("board value : " + board);
 		log.debug("===== BoardDAOImpl Class Read end =====");
 		return board;
 	}
