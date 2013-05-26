@@ -8,22 +8,40 @@
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
 		</layout>
+
+		<filter class="org.apache.log4j.varia.StringMatchFilter">
+			<param name="StringToMatch" value="Result" />
+			<param name="AcceptOnMatch" value="false" />
+		</filter>
+
 	</appender>
 	
 	<!-- Application Loggers -->
+	<logger name="com.ibatis">
+		<level value="DEBUG" />
+	</logger>
+	
+	<logger name="java.sql">
+		<level value="DEBUG" />
+	</logger>
+
 	<logger name="org.bsns.server">
 		<level value="info" />
 	</logger>
 	
+	<logger name="org.bsns.server">
+		<level value="DEBUG" />
+	</logger>
+
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
 		<level value="info" />
-	</logger>	
-	
+	</logger>
+
 	<logger name="org.springframework.beans">
 		<level value="info" />
 	</logger>
-	
+
 	<logger name="org.springframework.context">
 		<level value="info" />
 	</logger>

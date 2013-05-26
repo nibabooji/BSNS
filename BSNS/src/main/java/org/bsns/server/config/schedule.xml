@@ -1,0 +1,51 @@
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="Schedule">
+
+	<typeAlias alias="schedule" type="org.bsns.server.domain.ScheduleVO" />
+    <typeAlias alias="condition" type="org.bsns.server.common.Condition"/>
+    
+    <resultMap class="schedule" id="scheduleResult">
+    	<result property="scheduleKey" column="SCHEDULE_KEY"/>
+    	<result property="boardNum" column="BOARD_NO"/>
+    	<result property="scheduleDate" column="SCHEDULE_DATE"/>
+    </resultMap> 
+
+	<insert id="create" parameterClass="schedule">
+		<selectKey keyProperty="scheduleKey" resultClass="Integer">
+			SELECT SEQ_SCHEDULE.NEXTVAL SCHEDULE_KEY FROM DUAL
+		</selectKey>
+		INSERT INTO TB_SCHEDULE(SCHEDULE_KEY, BOARD_NO, SCHEDULE_DATE)
+		VALUES (#scheduleKey#, #boardNum#, SYSDATE)
+	</insert>
+	<select id="read" parameterClass="condition" resultMap="scheduleResult">
+		SELECT SCHEDULE_KEY, BOARD_NO, SCHEDULE_DATE
+		FROM TB_SCHEDULE
+		WHERE SCHEDULE_KEY = #scheduleKey#
+	</select>
+
+	<select id="list" parameterClass="condition" resultMap="scheduleResult">
+		SELECT *
+		FROM(
+			SELECT ROWNUM rn, A.* 
+			FROM (
+				SELECT schedule.SCHEDULE_KEY, schedule.BOARD_NO, schedule.SCHEDULE_DATE
+				FROM TB_SCHEDULE schedule 
+				ORDER BY schedule.SCHEDULE_DATE DESC
+			)A
+		)WHERE <![CDATA[ rn >= ((#page#-1)*10)+1 AND rn <= #page#*10 ]]>
+		ORDER BY rn
+	</select>
+
+	<update id="update" parameterClass="schedule">
+		UPDATE TB_SCHEDULE
+		SET SCHEDULE_DATE = SYSDATE
+		WHERE SCHEDULE_KEY = #scheduleKey#
+	</update>
+
+	<delete id="delete" parameterClass="condition">
+		DELETE FROM TB_SCHEDULE
+		WHERE SCHEDULE_KEY = #scheduleKey#
+	</delete>
+</sqlMap>

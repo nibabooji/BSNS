@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMapConfig      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+<settings useStatementNamespaces="true"/>
+    
+  <!-- List the SQL Map XML files. They can be loaded from the 
+       classpath, as they are here (com.domain.data...) -->
+       
+  <sqlMap resource="org/bsns/server/config/board.xml"/>
+  <sqlMap resource="org/bsns/server/config/jobTime.xml"/>
+  <sqlMap resource="org/bsns/server/config/schedule.xml"/>
+
+</sqlMapConfig>
+ 
