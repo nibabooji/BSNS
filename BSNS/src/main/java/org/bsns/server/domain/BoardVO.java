@@ -1,6 +1,7 @@
 package org.bsns.server.domain;
 
 import java.util.Date;
+import java.util.List;
 
 public class BoardVO {
 
@@ -16,13 +17,13 @@ public class BoardVO {
 	
 	private Date date;
 
-	private JobTimeVO jobTime;
+	private List<JobTimeVO> jobTime;
 	
-	private BoardFileVO boardFile;
+	private List<BoardFileVO> boardFile;
 	
-	private ScheduleVO schedule;
+	private List<ScheduleVO> schedule;
 	
-	private ApprovalVO approval;
+	private List<ApprovalVO> approval;
 
 	public Integer getNumber() {
 		return number;
@@ -64,35 +65,35 @@ public class BoardVO {
 		this.date = date;
 	}
 
-	public JobTimeVO getJobTime() {
+	public List<JobTimeVO> getJobTime() {
 		return jobTime;
 	}
 
-	public void setJobTime(JobTimeVO jobTime) {
+	public void setJobTime(List<JobTimeVO> jobTime) {
 		this.jobTime = jobTime;
 	}
 
-	public BoardFileVO getBoardFile() {
+	public List<BoardFileVO> getBoardFile() {
 		return boardFile;
 	}
 
-	public void setBoardFile(BoardFileVO boardFile) {
+	public void setBoardFile(List<BoardFileVO> boardFile) {
 		this.boardFile = boardFile;
 	}
 
-	public ScheduleVO getSchedule() {
+	public List<ScheduleVO> getSchedule() {
 		return schedule;
 	}
 
-	public void setSchedule(ScheduleVO schedule) {
+	public void setSchedule(List<ScheduleVO> schedule) {
 		this.schedule = schedule;
 	}
 
-	public ApprovalVO getApproval() {
+	public List<ApprovalVO> getApproval() {
 		return approval;
 	}
 
-	public void setApproval(ApprovalVO approval) {
+	public void setApproval(List<ApprovalVO> approval) {
 		this.approval = approval;
 	}
 
