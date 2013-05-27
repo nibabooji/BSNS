@@ -17,7 +17,7 @@
     	<result property="email"	column="EMAIL"/>
     	<result property="content"	column="CONTENT"/>
     	<result property="date"		column="WRITE_DATE"/>
-    	<result property="jobTime"  column="BOARD_NO" select="boardJobTimeList"/>
+    	<result property="jobTime"  column="BOARD_NO" select="Board.boardJobTimeList"/>
     	<result property="boardFile"  column="BOARD_NO" select="Board.boardFileList"/>
     	<result property="schedule"  column="BOARD_NO" select="Board.scheduleList"/>
     	<result property="approval"  column="BOARD_NO" select="Board.approvalList"/>

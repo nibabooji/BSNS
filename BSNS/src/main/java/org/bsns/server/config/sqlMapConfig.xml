@@ -13,6 +13,7 @@
   <sqlMap resource="org/bsns/server/config/board.xml"/>
   <sqlMap resource="org/bsns/server/config/jobTime.xml"/>
   <sqlMap resource="org/bsns/server/config/schedule.xml"/>
+  <sqlMap resource="org/bsns/server/config/member.xml"/>
 
 </sqlMapConfig>
  

@@ -18,7 +18,7 @@ public interface MemberDAO {
 	
 	public List<MemberVO> list(Condition condition) throws SQLException;
 	
-	public List<MemberVO> getFriendList(String Key) throws SQLException;
+	public List<MemberVO> getFriendList(String key) throws SQLException;
 	
-	public void addFriend(String key, MemberVO friend) throws SQLException;
+	public void addFriend(Condition condition) throws SQLException;
 }

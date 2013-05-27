@@ -1,0 +1,66 @@
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="Member">
+
+	<typeAlias alias="member" type="org.bsns.server.domain.MemberVO" />
+    <typeAlias alias="condition" type="org.bsns.server.common.Condition"/>
+    
+    <resultMap class="member" id="memberResult">
+    	<result property="email"		column="EMAIL"			/>
+    	<result property="dept"			column="DEPT_NO"		/>
+    	<result property="position"		column="POSITION_NO"	/>
+    	<result property="password"		column="PASSWORD"		/>
+    	<result property="name"			column="USER_NAME"		/>
+    </resultMap>
+
+	<insert id="create" parameterClass="member">
+		INSERT INTO TB_MEMBER(EMAIL, DEPT_NO, POSITION_NO, PASSWORD, USER_NAME)
+		VALUES (#email#, #dept#, #position#, #password#, #name#)
+	</insert>
+	
+	<select id="read" parameterClass="condition" resultMap="memberResult">
+		SELECT *
+		FROM TB_MEMBER
+		WHERE EMAIL = #email#
+	</select>
+	
+	<select id="list" parameterClass="condition" resultMap="memberResult">
+		SELECT *
+		FROM TB_MEMBER
+		WHERE 
+			<isNotEmpty property="email">
+				EMAIL = #email#
+			</isNotEmpty>
+			<isNotEmpty property="name">
+				USER_NAME = #name#
+			</isNotEmpty>
+	</select>
+	
+	<update id="update" parameterClass="member">
+		UPDATE TB_MEMBER
+		SET DEPT_NO = #dept#,
+			POSITION_NO = #position#,
+			PASSWORD = #password#,
+			USER_NAME = #name#
+		WHERE EMAIL = #email#
+	</update>
+	
+	<delete id="delete" parameterClass="condition">
+		DELETE FROM TB_MEMBER
+		WHERE EMAIL = #email#
+	</delete>
+	
+	<select id="getFriendList" parameterClass="String" resultMap="memberResult">
+		SELECT MEMBER.EMAIL, MEMBER.DEPT_NO, MEMBER.POSITION_NO, MEMBER.PASSWORD, MEMBER.USER_NAME,
+      			FRIEND.FRIEND_NO, FRIEND.FRIEND_EMAIL
+		FROM TB_MEMBER MEMBER, TB_FRIEND FRIEND
+		WHERE MEMBER.EMAIL = FRIEND.EMAIL(+)
+  			AND MEMBER.EMAIL = #email#
+	</select>
+	
+	<insert id="addFriend" parameterClass="condition">
+		INSERT INTO TB_FRIEND(FRIEND_NO, EMAIL, FRIEND_EMAIL)
+		values(SEQ_FRIEND.NEXTVAL, #email#, #friendMail#)
+	</insert>
+</sqlMap>
