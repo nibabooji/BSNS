@@ -6,6 +6,8 @@ public class BoardVO {
 
 	private Integer number;
 	
+	//타입이 추가 될떄 마다 적어 놀 것 
+	// EX) 1 -> 소모임, 2 -> 개인SNS, 3 -> 호출 
 	private Integer type;
 	
 	private String email;
@@ -101,9 +103,4 @@ public class BoardVO {
 				+ ", jobTime=" + jobTime + ", boardFile=" + boardFile
 				+ ", schedule=" + schedule + ", approval=" + approval + "]";
 	}
-	
-	
-	
-	
-	
 }
