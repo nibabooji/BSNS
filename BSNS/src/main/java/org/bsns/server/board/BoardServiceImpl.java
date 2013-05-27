@@ -7,7 +7,9 @@ import javax.annotation.Resource;
 import org.apache.log4j.Logger;
 import org.bsns.server.common.Condition;
 import org.bsns.server.domain.BoardVO;
+import org.springframework.stereotype.Service;
 
+@Service
 public class BoardServiceImpl 
 implements BoardService
 {
