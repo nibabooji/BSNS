@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+    <sqlMap namespace="FileAuth">
+    
+    <typeAlias alias="fileAuth" type="org.bsns.server.domain.FileAuthVO"/>
+    <typeAlias alias="condition" type="org.bsns.server.common.Condition"/>
+    
+    <resultMap class="fileAuth" id="fileAuthResult">
+    	<result property="fileAuthKey" 	column="FILE_AUTH_KEY"/>
+    	<result property="boardFileNo" 	column="BOARD_FILE_NO"/>
+    	<result property="email" 	column="EMAIL"/>    	
+    </resultMap>
+    
+    <insert id="create" parameterClass="fileAuth">
+    	<selectKey keyProperty="fileAuthKey" resultClass="Integer">
+        	SELECT SEQ_FILE_AUTH.NEXTVAL FILE_AUTH_KEY FROM DUAL
+        </selectKey>
+            INSERT INTO TB_FILE_AUTH(FILE_AUTH_KEY, BOARD_FILE_NO, EMAIL)
+            VALUES (#fileAuthKey#, #boardFileNo#, #email#)
+    </insert>
+    
+    <select id="read" parameterClass="condition" resultMap="fileAuthResult">
+    	SELECT *
+    	FROM TB_FILE_AUTH
+    	WHERE FILE_AUTH_KEY = #fileAuthKey#
+    </select>
+    
+    <select id="list" parameterClass="condition" resultMap="fileAuthResult">
+		SELECT *
+		FROM TB_FILE_AUTH
+		WHERE BOARD_FILE_NO = #boardFileNo#
+    </select>
+    
+    <update id="update" parameterClass="fileAuth">
+    	UPDATE TB_FILE_AUTH
+    	SET BOARD_FILE_NO = #boardFileNo#,
+    		EMAIL = #email#
+    	WHERE FILE_AUTH_KEY = #fileAuthKey#
+    </update>
+    
+    <delete id="delete" parameterClass="condition">
+    	DELETE FROM TB_FILE_AUTH
+    	WHERE FILE_AUTH_KEY = #fileAuthKey#
+    </delete>
+    
+    </sqlMap>

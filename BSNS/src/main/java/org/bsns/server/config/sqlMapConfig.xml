@@ -11,6 +11,9 @@
        classpath, as they are here (com.domain.data...) -->
        
   <sqlMap resource="org/bsns/server/config/board.xml"/>
+  <sqlMap resource="org/bsns/server/config/boardFile.xml"/>
+  <sqlMap resource="org/bsns/server/config/file.xml"/>
+  <sqlMap resource="org/bsns/server/config/fileAuth.xml"/>
   <sqlMap resource="org/bsns/server/config/jobTime.xml"/>
   <sqlMap resource="org/bsns/server/config/schedule.xml"/>
   <sqlMap resource="org/bsns/server/config/member.xml"/>

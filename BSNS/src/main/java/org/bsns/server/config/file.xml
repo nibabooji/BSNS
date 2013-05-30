@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+    <sqlMap namespace="File">
+    
+    <typeAlias alias="file" type="org.bsns.server.domain.FileVO"/>
+    <typeAlias alias="condition" type="org.bsns.server.common.Condition"/>
+    
+    <resultMap class="file" id="fileResult">
+    	<result property="fileNo" 	column="FILE_NO"/>
+    	<result property="fileSize" 	column="FILE_SIZE"/>
+    	<result property="fileType" 	column="FILE_TYPE"/>  
+    	<result property="fileName" 	column="FILE_NAME"/>
+    	<result property="filePath" 	column="FILE_PATH"/>      	
+    </resultMap>
+    
+    <insert id="create" parameterClass="file">
+    	<selectKey keyProperty="fileNo" resultClass="Integer">
+        	SELECT SEQ_FILE.NEXTVAL FILE_NO FROM DUAL
+        </selectKey>
+            INSERT INTO TB_FILE(FILE_NO, FILE_SIZE, FILE_TYPE,FILE_NAME,FILE_PATH)
+            VALUES (#fileNo#, #fileSize#, #fileType#, #fileName#, #filePath#)
+    </insert>
+    
+    <select id="read" parameterClass="condition" resultMap="fileResult">
+    	SELECT *
+    	FROM TB_FILE
+    	WHERE FILE_NO = #fileNo#
+    </select>
+    
+    <update id="update" parameterClass="file">
+    	UPDATE TB_FILE
+    	SET FILE_SIZE = #fileSize#,
+    		FILE_TYPE = #fileType#,
+    		FILE_NAME = #fileName#,
+    		FILE_PATH = #filePath#
+    	WHERE FILE_NO = #fileNo#
+    </update>
+    
+    <delete id="delete" parameterClass="condition">
+    	DELETE FROM TB_FILE
+    	WHERE FILE_NO = #fileNo#
+    </delete>
+    
+    </sqlMap>

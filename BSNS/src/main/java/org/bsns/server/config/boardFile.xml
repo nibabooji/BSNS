@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+    <sqlMap namespace="BoardFile">
+    
+    <typeAlias alias="boardFile" type="org.bsns.server.domain.BoardFileVO"/>
+    <typeAlias alias="file" type="org.bsns.server.domain.FileVO"/>
+    <typeAlias alias="fileAuth" type="org.bsns.server.domain.FileAuthVO"/>
+    <typeAlias alias="condition" type="org.bsns.server.common.Condition"/>
+    
+    <resultMap class="boardFile" id="boardFileResult">
+		<result property="boardFileNo" column="BOARD_FILE_NO" />
+		<result property="fileNo" column="FILE_NO" />
+		<result property="boardNum" column="BOARD_NO" />
+		<result property="file" column="FILE_NO" select="BoardFile.fileList"/>
+		<result property="fileAuth" column="BOARD_NO" select="BoardFile.fileAuthList"/>
+    </resultMap>
+    
+    <resultMap class="file" id="fileResult">
+    	<result property="fileNo" 	column="FILE_NO"/>
+    	<result property="fileSize" 	column="FILE_SIZE"/>
+    	<result property="fileType" 	column="FILE_TYPE"/>  
+    	<result property="fileName" 	column="FILE_NAME"/>
+    	<result property="filePath" 	column="FILE_PATH"/>      	
+    </resultMap>
+    
+    <resultMap class="fileAuth" id="fileAuthResult">
+    	<result property="fileAuthKey" 	column="FILE_AUTH_KEY"/>
+    	<result property="boardFileNo" 	column="BOARD_FILE_NO"/>
+    	<result property="email" 	column="EMAIL"/>    	
+    </resultMap>
+    
+    
+    
+    
+    
+    <statement id="fileList" resultMap="fileResult">
+    	SELECT *
+		FROM TB_FILE
+		WHERE FILE_NO = #fileNo#
+    </statement>
+    
+    <statement id="fileAuthList" resultMap="fileAuthResult">
+    	SELECT *
+		FROM TB_FILE_AUTH
+		WHERE BOARD_FILE_NO = #boardFileNo#
+    </statement>
+    
+    
+    
+    
+    
+    
+    
+    <insert id="create" parameterClass="boardFile">
+    	<selectKey keyProperty="boardFileNo" resultClass="Integer">
+        	SELECT SEQ_BOARD_FILE.NEXTVAL BOARD_FILE_NO FROM DUAL
+        </selectKey>
+            INSERT INTO TB_BOARD_FILE(BOARD_FILE_NO, FILE_NO, BOARD_NO)
+            VALUES (#boardFileNo#, #fileNo#, #boardNum#)
+    </insert>
+    
+    <select id="read" parameterClass="condition" resultMap="boardFileResult">
+    	SELECT *
+    	FROM TB_BOARD_FILE
+    	WHERE BOARD_FILE_NO = #boardFileNo#
+    </select>
+    
+    <select id="list" parameterClass="condition" resultMap="boardFileResult">
+		SELECT *
+		FROM TB_BOARD_FILE
+		WHERE BOARD_NO = #boardNum#
+    </select>
+    
+    <update id="update" parameterClass="boardFile">
+    	UPDATE TB_BOARD_FILE
+    	SET FILE_NO = #fileNo#
+    	WHERE BOARD_FILE_NO = #boardFileNo#
+    </update>
+    
+    <delete id="delete" parameterClass="condition">
+    	DELETE FROM TB_BOARD_FILE
+    	WHERE BOARD_FILE_NO = #boardFileNo#
+    </delete>
+    
+    </sqlMap>
