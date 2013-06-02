@@ -9,7 +9,7 @@ import org.bsns.server.common.SqlMapClientConfig;
 import org.bsns.server.domain.FileAuthVO;
 import org.springframework.stereotype.Repository;
 
-@Repository("fileAuthDAO")
+@Repository("FileAuthDAO")
 public class FileAuthDAOImpl extends SqlMapClientConfig implements FileAuthDAO{
 
 	private static String NAMESPACE = "FileAuth.";

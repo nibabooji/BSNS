@@ -9,7 +9,7 @@ import org.bsns.server.domain.BoardFileVO;
 import org.bsns.server.domain.FileVO;
 import org.springframework.stereotype.Repository;
 
-@Repository("fileDAO")
+@Repository("FileDAO")
 public class FileDAOImpl 
 extends SqlMapClientConfig 
 implements FileDAO{

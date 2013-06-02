@@ -9,7 +9,7 @@ import org.bsns.server.common.Condition;
 import org.bsns.server.domain.BoardVO;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("BoardService")
 public class BoardServiceImpl 
 implements BoardService
 {
