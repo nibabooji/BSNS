@@ -9,7 +9,7 @@ import org.bsns.server.common.Condition;
 import org.bsns.server.domain.MemberVO;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("MemberService")
 public class MemberServiceImpl 
 implements MemberService
 {
