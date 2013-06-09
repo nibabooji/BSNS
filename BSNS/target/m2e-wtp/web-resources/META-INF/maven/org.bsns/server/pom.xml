@@ -18,9 +18,12 @@
  	 <id>mesir-repo</id>
  	 <url>http://mesir.googlecode.com/svn/trunk/mavenrepo</url>
  	</repository>
+<repository>
+   <id>mesir-repo</id>
+   <url>http://mesir.googlecode.com/svn/trunk/mavenrepo</url>
+  </repository>
 </repositories>
 	<dependencies>
-	
 <dependency>
           <groupId>net.sf.json-lib</groupId>
           <artifactId>json-lib</artifactId>
@@ -30,6 +33,12 @@
           <optional>false</optional>
       </dependency>
 
+
+<dependency>
+	<groupId>org.apache.httpcomponents</groupId>
+	<artifactId>httpclient</artifactId>
+	<version>4.0-alpha4</version>
+</dependency>
 
 <dependency>
 	<groupId>org.springframework</groupId>
@@ -91,12 +100,12 @@
   		<artifactId>spring-orm</artifactId>
   		<version>${org.springframework-version}</version>
   	</dependency> 
- <dependency>
-  	 <groupId>com.oracle</groupId>
-  	 <artifactId>ojdbc14</artifactId>
-  	 <version>10.2.0.4.0</version>
-  	 <scope>provided</scope>
- </dependency>
+  <dependency>
+   <groupId>com.oracle</groupId>
+   <artifactId>ojdbc14</artifactId>
+   <version>10.2.0.4.0</version>
+  </dependency>
+ 
 	
 		<!-- Spring -->
 		<dependency>
@@ -237,6 +246,7 @@
                     <mainClass>org.test.int1.Main</mainClass>
                 </configuration>
             </plugin>
+            
         </plugins>
     </build>
 </project>

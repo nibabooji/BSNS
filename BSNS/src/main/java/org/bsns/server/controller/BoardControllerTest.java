@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import net.sf.json.JSONArray;
 
+import org.apache.log4j.Logger;
 import org.bsns.server.board.BoardService;
 import org.bsns.server.common.Condition;
 import org.bsns.server.domain.BoardVO;
@@ -23,11 +24,14 @@ public class BoardControllerTest {
 	@Resource(name="BoardService")
 	private BoardService boardService;
 	
-	@RequestMapping(value="listTest.do", method = RequestMethod.GET)
-	public String list(
+	private final Logger log = Logger.getLogger(this.getClass());
+	
+	@RequestMapping(value="/listTest.do", method = RequestMethod.GET)
+	public void list(
 			@RequestParam(defaultValue="1") Integer page, 
-			@RequestParam(defaultValue="1") String type, 
-			HttpServletResponse response) throws Exception 
+			String type, HttpServletResponse response,
+			HttpServletRequest request
+			) throws Exception 
 		{
 		
 		Condition<String, Object> condition = new Condition<String, Object>();
@@ -41,10 +45,12 @@ public class BoardControllerTest {
 		
 		jsonArr.addAll(list);
 		
-		response.setCharacterEncoding("UTF-8");
-		response.getWriter().write(jsonArr.toString());
-		response.getWriter().flush();
+		log.debug("Test Controller : " + jsonArr);
 		
-		return "BoardListTest";
+		response.setContentType("text/html; charset=UTF-8");
+		response.setHeader("Cache-Control", "no-cache");
+		response.getWriter().write(jsonArr.toString());
+		
+		response.getWriter().flush();
 	}
 }
