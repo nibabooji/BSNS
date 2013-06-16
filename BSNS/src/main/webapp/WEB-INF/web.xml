@@ -31,7 +31,7 @@
 		
 	<servlet-mapping>
 		<servlet-name>appServlet</servlet-name>
-		<url-pattern>/</url-pattern>
+		<url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 	
 <!-- 인코딩을 설정하는 부분입니다.  "/*"로 들어오는 모든 것들에 대해 UTF-8인코딩을 적용합니다.-->

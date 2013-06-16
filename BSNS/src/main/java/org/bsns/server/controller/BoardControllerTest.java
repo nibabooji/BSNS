@@ -1,5 +1,6 @@
 package org.bsns.server.controller;
 
+import java.io.IOException;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -26,6 +27,14 @@ public class BoardControllerTest {
 	
 	private final Logger log = Logger.getLogger(this.getClass());
 	
+	@RequestMapping(value = "/favicon.ico", method = RequestMethod.GET)
+	public void favicon( HttpServletRequest request, HttpServletResponse reponse ) {
+		try {
+			reponse.sendRedirect("/resources/favicon.ico");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 	@RequestMapping(value="/listTest.do", method = RequestMethod.GET)
 	public void list(
 			@RequestParam(defaultValue="1") Integer page, 
