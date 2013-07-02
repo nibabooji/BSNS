@@ -16,6 +16,9 @@
   <sqlMap resource="org/bsns/server/config/fileAuth.xml"/>
   <sqlMap resource="org/bsns/server/config/jobTime.xml"/>
   <sqlMap resource="org/bsns/server/config/schedule.xml"/>
+  <sqlMap resource="org/bsns/server/config/approval.xml"/>
+  <sqlMap resource="org/bsns/server/config/approvalCheck.xml"/>
+
   <sqlMap resource="org/bsns/server/config/member.xml"/>
 
 </sqlMapConfig>

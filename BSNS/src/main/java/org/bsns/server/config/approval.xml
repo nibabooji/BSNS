@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+    <sqlMap namespace="Approval">
+    
+    <typeAlias alias="approval" type="org.bsns.server.domain.ApprovalVO"/>
+    <typeAlias alias="condition" type="org.bsns.server.common.Condition"/>
+    
+    <resultMap class="approval" id="approvalResult">
+    	<result property="approvalKey" 	column="APPROVAL_KEY"/>
+    	<result property="boardNum" 	column="BOARD_NO"/>
+    </resultMap>
+    
+    <insert id="create" parameterClass="approval">
+    	<selectKey keyProperty="approvalKey" resultClass="Integer">
+        	SELECT SEQ_APPROVAL.NEXTVAL APRROVAL_NO FROM DUAL
+        </selectKey>
+            INSERT INTO TB_APPROVAL(APPROVAL_KEY, BOARD_NO)
+            VALUES (#approvalKey#, #boardNum#)
+    </insert>
+    
+    <select id="read" parameterClass="condition" resultMap="approvalResult">
+    	SELECT *
+    	FROM TB_APPROVAL
+    	WHERE APPROVAL_KEY = #approvalKey#
+    </select>
+    
+    <update id="update" parameterClass="approval">
+    	UPDATE TB_APPROVAL
+    	SET BOARD_NO = #boardNum#
+    	WHERE APPROVAL_KEY = #approvalKey#
+    </update>
+    
+    <delete id="delete" parameterClass="condition">
+    	DELETE FROM TB_APPROVAL
+    	WHERE APPROVAL_KEY = #approvalKey#
+    </delete>
+    
+    </sqlMap>

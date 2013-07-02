@@ -16,5 +16,5 @@ public interface ApprovalDAO {
 	
 	public void delete(Condition condition) throws SQLException;
 	
-	public List<ApprovalVO> list(Condition condition) throws SQLException;
+//	public List<ApprovalVO> list(Condition condition) throws SQLException;
 }

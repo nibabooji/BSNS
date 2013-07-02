@@ -23,7 +23,7 @@ extends JunitSettting
 	public void create() throws SQLException{
 		MemberVO member = new MemberVO();
 		
-		member.setEmail("test_dao");
+		member.setEmail("test_dao1");
 		member.setName("test_name");
 		member.setPassword("test");
 		member.setPosition(String.valueOf(4));

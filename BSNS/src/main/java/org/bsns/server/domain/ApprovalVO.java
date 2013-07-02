@@ -4,14 +4,14 @@ public class ApprovalVO {
 	private Integer approvalKey;
 	private Integer boardNum;
 	
-	public ApprovalVO() {
-		// TODO Auto-generated constructor stub
-	}
-	public ApprovalVO(Integer approvalKey, Integer boardNum) {
-		super();
-		this.approvalKey = approvalKey;
-		this.boardNum = boardNum;
-	}
+//	public ApprovalVO() {
+//		// TODO Auto-generated constructor stub
+//	}
+//	public ApprovalVO(Integer approvalKey, Integer boardNum) {
+//		super();
+//		this.approvalKey = approvalKey;
+//		this.boardNum = boardNum;
+//	}
 	public Integer getApprovalKey() {
 		return approvalKey;
 	}

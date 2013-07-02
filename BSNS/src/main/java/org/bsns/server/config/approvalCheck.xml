@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+    <sqlMap namespace="ApprovalCheck">
+    
+    <typeAlias alias="approvalCheck" type="org.bsns.server.domain.ApprovalCheckVO"/>
+    <typeAlias alias="condition" type="org.bsns.server.common.Condition"/>
+    
+    <resultMap class="approvalCheck" id="approvalCheckResult">
+    	<result property="approvalCheck" 	column="APPROVAL_CHECK"/>
+    	<result property="approvalKey"		 	column="APPROVAL_KEY"/>
+    	<result property="email"		 		column="EMAIL"/>
+    </resultMap>
+    
+    <insert id="create" parameterClass="approvalCheck">
+            INSERT INTO TB_APPROVAL_CHECK(APPROVAL_CHECK, APPROVAL_KEY, EMAIL)
+            VALUES (#approvalCheck#, #approvalKey#, #email#)
+    </insert>
+    
+    <select id="read" parameterClass="condition" resultMap="approvalCheckResult">
+    	SELECT *
+    	FROM TB_APPROVAL_CHECK
+    	WHERE APPROVAL_KEY = #approvalKey#
+    </select>
+    
+    <update id="update" parameterClass="approvalCheck">
+    	UPDATE TB_APPROVAL_CHECK
+    	SET APPROVAL_CHECK = #approvalCheck#
+    	WHERE APPROVAL_KEY = #approvalKey# and EMAIL = #email# 
+    </update>
+    
+    <delete id="delete" parameterClass="condition">
+    	DELETE FROM TB_APPROVAL_CHECK
+    	WHERE APPROVAL_KEY = #approvalKey#
+    </delete>
+    
+    </sqlMap>
