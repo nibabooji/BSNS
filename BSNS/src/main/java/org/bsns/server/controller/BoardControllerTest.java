@@ -13,7 +13,10 @@ import org.apache.log4j.Logger;
 import org.bsns.server.board.BoardService;
 import org.bsns.server.common.Condition;
 import org.bsns.server.domain.BoardVO;
+import org.bsns.server.domain.MemberVO;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,14 +30,14 @@ public class BoardControllerTest {
 	
 	private final Logger log = Logger.getLogger(this.getClass());
 	
-	@RequestMapping(value = "/favicon.ico", method = RequestMethod.GET)
-	public void favicon( HttpServletRequest request, HttpServletResponse reponse ) {
-		try {
-			reponse.sendRedirect("/resources/favicon.ico");
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	@RequestMapping(value="/create.do", method = RequestMethod.GET)
+	public void create(MemberVO vo){
+		log.debug("in Controller create()");
+		log.debug("create vo value : " + vo.toString());
+		
+		//return "create";
 	}
+	
 	@RequestMapping(value="/listTest.do", method = RequestMethod.GET)
 	public void list(
 			@RequestParam(defaultValue="1") Integer page, 
@@ -42,6 +45,8 @@ public class BoardControllerTest {
 			HttpServletRequest request
 			) throws Exception 
 		{
+		
+		log.debug("in Controller list()");
 		
 		Condition<String, Object> condition = new Condition<String, Object>();
 		
